@@ -24,9 +24,21 @@ import com.badlogic.gdx.graphics.Color;
  * A {@link TextAreaLinePainter} dictates the color of text elements passed into
  * it, for a single line, and is used in conjunction with
  * {@link MulticolorTextArea} in order to paint different pieces of text with
- * different colors
+ * different colors.
  */
 public interface TextAreaLinePainter {
+
+	/**
+	 * Returns a List of {@link ColoredTextElement}, these
+	 * {@code ColoredTextElements} represent the text, with their respective
+	 * color, for that particular line
+	 * 
+	 * @param line
+	 *            the characters in the given line
+	 * @return a {@code List<ColoredTextElement>} with the text elements for the
+	 *         given line
+	 */
+	List<ColoredTextElement> getTextElementsForLine(CharSequence line);
 
 	/**
 	 * A {@link ColoredTextElement} represents a sequence of characters which
@@ -91,16 +103,5 @@ public interface TextAreaLinePainter {
 			return "[Color=" + color + ", text=" + text + "]";
 		}
 	}
-
-	/**
-	 * Returns a List of {@link ColoredTextElement}s which represent the text
-	 * with their respective color, for that particular line
-	 * 
-	 * @param textLine
-	 *            the characters in the given line
-	 * @return a {@code List<ColoredTextElement>} with the text elements for the
-	 *         given line
-	 */
-	List<ColoredTextElement> getTextElementsForLine(CharSequence line);
 
 }
