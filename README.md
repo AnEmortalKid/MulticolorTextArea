@@ -3,14 +3,14 @@ MulticolorTextArea - release
 Contained in this branch are the following
 
 - src.com.badlogic.gdx.scenes2d.ui.textarea
--- DefaultTextAreaLinePainter -> default implementation of TextAreaLinePainter
--- TextAreaLinePainter -> interface used in conjunction with MulticolorTextArea
--- ExtensibleTextArea -> a copy pasted slightly modified TextArea (from libgdx)
--- MulticolorTextArea -> a text area that can have text in multiple colors.
+ - DefaultTextAreaLinePainter -> default implementation of TextAreaLinePainter
+ - TextAreaLinePainter -> interface used in conjunction with MulticolorTextArea
+ - ExtensibleTextArea -> a copy pasted slightly modified TextArea (from libgdx)
+ - MulticolorTextArea -> a text area that can have text in multiple colors.
 
 - com.badlogic.gdx.scenes2d.ui.textarea.example
--- HelloWorldTester (a basic program that just has a MulticolorTextArea)
--- HelloWorldTextPainter (an implementation of TextAreaLinePainter which paints Hello and World different colors).
+ - HelloWorldTester (a basic program that just has a MulticolorTextArea)
+ - HelloWorldTextPainter (an implementation of TextAreaLinePainter which paints Hello and World different colors).
 
 Usage
 ====================
@@ -18,10 +18,12 @@ To see the test working, do the following:
 - Check HelloWorldTester and make sure the atlas/json path's are the correct ones for your libgdx setup
 - Using the DesktopLauncher (or whichever way you launch your program), you can have the following main:
 
+<pre>
 public static void main(String[] arg) {
 	LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 	new LwjglApplication(new HelloWorldTester(), config);
 }
+</pre>
 
 This should be enough to run the text area and show "Hello World look at this!" with Hello and World in different colors.
 
