@@ -23,14 +23,19 @@ import com.badlogic.gdx.graphics.Color;
 
 /**
  * The {@link DefaultTextAreaLinePainter} is a basic implementation of
- * {@link TextAreaLinePainter} which sets the color of every text to a single color
+ * {@link TextAreaLinePainter} which sets the color of every text to a single
+ * color
  */
 public class DefaultTextAreaLinePainter implements TextAreaLinePainter {
 
+	/**
+	 * The color for every piece of text
+	 */
 	protected Color defaultColor;
 
 	/**
-	 * Constructs a {@link DefaultTextAreaLinePainter} with the given default color
+	 * Constructs a {@link DefaultTextAreaLinePainter} with the given default
+	 * color
 	 * 
 	 * @param defaultColor
 	 *            the color to paint every piece of text with
@@ -40,9 +45,11 @@ public class DefaultTextAreaLinePainter implements TextAreaLinePainter {
 	}
 
 	/**
-	 * Returns the default {@link Color} for this {@link DefaultTextAreaLinePainter}
+	 * Returns the default {@link Color} for this
+	 * {@link DefaultTextAreaLinePainter}
 	 * 
-	 * @return the default {@link Color} for this {@link DefaultTextAreaLinePainter}
+	 * @return the default {@link Color} for this
+	 *         {@link DefaultTextAreaLinePainter}
 	 */
 	public Color getDefaultColor() {
 		return defaultColor;

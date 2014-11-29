@@ -31,6 +31,11 @@ import com.badlogic.gdx.scenes2d.ui.textarea.MulticolorTextArea;
  * the {@link HelloWorldTextPainter} as a painter
  */
 public class HelloWorldTester extends ApplicationAdapter {
+	/*
+	 * Change your path strings to wherever you uiskin.json and uiskin.atlas is
+	 * located at
+	 */
+	
 	private static final String JSON_PATH = "skin/default/uiskin.json";
 	private static final String ATLAS_PATH = "skin/default/uiskin.atlas";
 

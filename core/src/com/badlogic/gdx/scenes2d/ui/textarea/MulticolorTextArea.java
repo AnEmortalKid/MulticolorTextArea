@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes2d.ui.textarea.TextAreaLinePainter.ColoredTextElement;
 
 /**
@@ -38,27 +39,83 @@ public class MulticolorTextArea extends ExtensibleTextArea {
 	 */
 	private List<List<ColoredTextElement>> coloredTextLines = new ArrayList<List<ColoredTextElement>>();
 
+	/**
+	 * A painter which decides what color the text pieces for a particular line
+	 * should be
+	 */
 	protected TextAreaLinePainter textPainter;
 
+	/**
+	 * A reference to the text we last had in order to avoid unnecessary
+	 * calculations
+	 */
 	private String lastTextSeen;
 
+	/**
+	 * Constructs an {@link MulticolorTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link MulticolorTextArea}
+	 * @param skin
+	 *            the {@link Skin} for this {@link MulticolorTextArea}
+	 */
 	public MulticolorTextArea(String text, Skin skin) {
 		super(text, skin);
 	}
 
+	/**
+	 * Constructs an {@link MulticolorTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link MulticolorTextArea}
+	 * @param skin
+	 *            the {@link Skin} for this {@link MulticolorTextArea}
+	 * @param styleName
+	 *            the name of the style associated with an existing
+	 *            {@link TextFieldStyle}
+	 */
 	public MulticolorTextArea(String text, Skin skin, String styleName) {
 		super(text, skin, styleName);
 	}
 
+	/**
+	 * Constructs an {@link MulticolorTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link MulticolorTextArea}
+	 * @param style
+	 *            the {@link TextFieldStyle} to use for this
+	 *            {@link MulticolorTextArea}
+	 */
 	public MulticolorTextArea(String text, TextFieldStyle style) {
 		super(text, style);
 	}
 
-	public MulticolorTextArea(String text, Skin skin, TextAreaLinePainter painter) {
+	/**
+	 * Constructs an {@link MulticolorTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link MulticolorTextArea}
+	 * @param skin
+	 *            the {@link Skin} for this {@link MulticolorTextArea}
+	 * @param painter
+	 *            the {@link TextAreaLinePainter} to use when deciding the color
+	 *            of the text for each line
+	 */
+	public MulticolorTextArea(String text, Skin skin,
+			TextAreaLinePainter painter) {
 		super(text, skin);
 		setTextPainter(painter);
 	}
 
+	/**
+	 * Sets the {@link TextAreaLinePainter} to use for this
+	 * {@link MulticolorTextArea}
+	 * 
+	 * @param textPainter
+	 *            the {@link TextAreaLinePainter} to use when painting the text
+	 *            lines
+	 */
 	public void setTextPainter(TextAreaLinePainter textPainter) {
 		if (textPainter == null)
 			throw new IllegalArgumentException("TextPainter cannot be null.");
@@ -68,8 +125,10 @@ public class MulticolorTextArea extends ExtensibleTextArea {
 	@Override
 	protected void calculateOffsets() {
 		super.calculateOffsets();
+
+		// prevent unnecessary processing if nothing has changed
 		if (!this.text.equals(lastTextSeen)) {
-			buildColoredLines();
+			buildTextLines();
 			this.lastTextSeen = text;
 		}
 	}
@@ -77,7 +136,7 @@ public class MulticolorTextArea extends ExtensibleTextArea {
 	@Override
 	protected void drawText(Batch batch, BitmapFont font, float x, float y) {
 		float offsetY = 0;
-		// currStart is where we should draw the text
+		// where to draw the next piece of text
 		float currStart = 0;
 		for (List<ColoredTextElement> line : coloredTextLines) {
 			for (ColoredTextElement ct : line) {
@@ -94,7 +153,7 @@ public class MulticolorTextArea extends ExtensibleTextArea {
 	 * Populates the {@code List<List<ColoredText>>} representing each line and
 	 * the chunks of text with their respective color.
 	 */
-	protected void buildColoredLines() {
+	protected void buildTextLines() {
 		coloredTextLines.clear();
 		for (int i = firstLineShowing * 2; i < (firstLineShowing + getLinesShowing()) * 2
 				&& i < linesBreak.size; i += 2) {

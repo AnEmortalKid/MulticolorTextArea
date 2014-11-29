@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.IntArray;
@@ -65,16 +66,50 @@ public class ExtensibleTextArea extends TextField {
 	 **/
 	protected float moveOffset;
 
+	/**
+	 * The preferred number of rows (lines)
+	 */
 	private float prefRows;
 
+	/**
+	 * Constructs an {@link ExtensibleTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link ExtensibleTextArea}
+	 * @param skin
+	 *            the {@link Skin} for this {@link ExtensibleTextArea}
+	 * @see {@link TextArea#TextArea(String, Skin)}
+	 */
 	public ExtensibleTextArea(String text, Skin skin) {
 		super(text, skin);
 	}
 
+	/**
+	 * Constructs an {@link ExtensibleTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link ExtensibleTextArea}
+	 * @param skin
+	 *            the {@link Skin} for this {@link ExtensibleTextArea}
+	 * @param styleName
+	 *            the name of the style associated with an existing
+	 *            {@link TextFieldStyle}
+	 * @see {@link TextArea#TextArea(String, Skin, String)}
+	 */
 	public ExtensibleTextArea(String text, Skin skin, String styleName) {
 		super(text, skin, styleName);
 	}
 
+	/**
+	 * Constructs an {@link ExtensibleTextArea}
+	 * 
+	 * @param text
+	 *            the initial text for this {@link ExtensibleTextArea}
+	 * @param style
+	 *            the {@link TextFieldStyle} to use for this
+	 *            {@link ExtensibleTextArea}
+	 * @see {@link TextArea#TextArea(String, TextFieldStyle)}
+	 */
 	public ExtensibleTextArea(String text, TextFieldStyle style) {
 		super(text, style);
 	}
@@ -116,6 +151,9 @@ public class ExtensibleTextArea extends TextField {
 	/**
 	 * Sets the preferred number of rows (lines) for this text area. Used to
 	 * calculate preferred height
+	 * 
+	 * @param prefRows
+	 *            the preferred number of rows
 	 */
 	public void setPrefRows(float prefRows) {
 		this.prefRows = prefRows;
@@ -137,19 +175,34 @@ public class ExtensibleTextArea extends TextField {
 		}
 	}
 
-	/** Returns total number of lines that the text occupies **/
+	/**
+	 * Returns total number of lines that the text occupies
+	 * 
+	 * @return the total number of lines that the text occupies
+	 */
 	public int getLines() {
 		return linesBreak.size / 2 + (newLineAtEnd() ? 1 : 0);
 	}
 
-	/** Returns if there's a new line at then end of the text **/
+	/**
+	 * Returns if there's a new line at then end of the text
+	 * 
+	 * @return whether there is a new line at the end of the text or not,
+	 *         <code>true</code> if there's a new line at the end of the text,
+	 *         <code>false</code> otherwise
+	 * */
 	public boolean newLineAtEnd() {
 		return text.length() != 0
 				&& (text.charAt(text.length() - 1) == ENTER_ANDROID || text
 						.charAt(text.length() - 1) == ENTER_DESKTOP);
 	}
 
-	/** Moves the cursor to the given number line **/
+	/**
+	 * Moves the cursor to the given number line
+	 * 
+	 * @param line
+	 *            the line to move the cursor to
+	 */
 	public void moveCursorLine(int line) {
 		if (line < 0) {
 			cursorLine = 0;
@@ -386,14 +439,23 @@ public class ExtensibleTextArea extends TextField {
 						|| (linesBreak.items[pos + 1] != index) || (linesBreak.items[pos + 1] == linesBreak.items[pos + 2]));
 	}
 
+	/**
+	 * @return the line that the cursor currently is at
+	 */
 	public int getCursorLine() {
 		return cursorLine;
 	}
 
+	/**
+	 * @return the index of the first line showed by the text area
+	 */
 	public int getFirstLineShowing() {
 		return firstLineShowing;
 	}
 
+	/**
+	 * @return the number of lines that are showing
+	 */
 	public int getLinesShowing() {
 		return linesShowing;
 	}

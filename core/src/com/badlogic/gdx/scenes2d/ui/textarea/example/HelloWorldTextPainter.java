@@ -28,10 +28,16 @@ import com.badlogic.gdx.scenes2d.ui.textarea.TextAreaLinePainter;
  * The {@link HelloWorldTextPainter} is a sample implementation of
  * {@link TextAreaLinePainter} in order to demonstrate how we can use the
  * {@link MulticolorTextArea} to paint text in different colors. This class
- * makes every instance of Hello be red, and World be green
+ * makes every instance of "Hello" be red, and "World" be green
  */
 public class HelloWorldTextPainter extends DefaultTextAreaLinePainter {
 
+	/**
+	 * Constructs a HelloWorldTextPainter
+	 * 
+	 * @param defaultColor
+	 *            the Default Color for this {@link HelloWorldTextPainter}
+	 */
 	public HelloWorldTextPainter(Color defaultColor) {
 		super(defaultColor);
 	}
@@ -40,14 +46,29 @@ public class HelloWorldTextPainter extends DefaultTextAreaLinePainter {
 	public List<ColoredTextElement> getTextElementsForLine(CharSequence line) {
 		String[] words = line.toString().split(" ");
 		List<ColoredTextElement> coloredElements = new ArrayList<TextAreaLinePainter.ColoredTextElement>();
+		StringBuilder strBuilder = new StringBuilder();
 		for (String word : words) {
 			Color wordColor = defaultColor;
-			if (word.equals("Hello"))
-				wordColor = Color.RED;
-			if (word.equals("World"))
-				wordColor = Color.GREEN;
-			coloredElements.add(new ColoredTextElement(word + " ", wordColor));
+			if (word.equals("Hello") || word.equals("World")) {
+
+				// Place the previous pieces of text in their own cluster
+				if (!strBuilder.toString().isEmpty())
+					coloredElements.add(new ColoredTextElement(
+							strBuilder + " ", wordColor));
+
+				// Determine word color and add the new word
+				wordColor = word.equals("Hello") ? Color.RED : Color.GREEN;
+				coloredElements.add(new ColoredTextElement(word + " ",
+						wordColor));
+
+				// reset strBuilder so we can keep clustering text
+				strBuilder = new StringBuilder();
+			} else {
+				strBuilder.append(word + " ");
+			}
 		}
+		// add the last chunk
+		coloredElements.add(new ColoredTextElement(strBuilder, defaultColor));
 		return coloredElements;
 	}
 

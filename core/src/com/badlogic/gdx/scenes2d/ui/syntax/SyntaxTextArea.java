@@ -51,9 +51,9 @@ public class SyntaxTextArea extends MulticolorTextArea {
 	}
 
 	@Override
-	protected void buildColoredLines() {
+	protected void buildTextLines() {
 		sta.notifyPainting(true);
-		super.buildColoredLines();
+		super.buildTextLines();
 		sta.notifyPainting(false);
 	}
 }
