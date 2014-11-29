@@ -10,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes2d.ui.syntax.SyntaxTextArea;
 import com.badlogic.gdx.scenes2d.ui.syntax.SyntaxTextAreaPainterImpl;
-import com.badlogic.gdx.scenes2d.ui.textarea.DefaultTextAreaLinePainter;
-import com.badlogic.gdx.scenes2d.ui.textarea.MulticolorTextArea;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
