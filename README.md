@@ -3,9 +3,11 @@ MulticolorTextArea
 
 A LibGDX project with a text area that allows for setting multiple text colors for different pieces of text. 
 
+This project might also include a SyntaxTextArea which can do syntax highlighting.
+
 License
 =================
-Copyright 2014 See AUTHORS file.
+Copyright 2014
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
