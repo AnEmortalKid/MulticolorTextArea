@@ -2,15 +2,15 @@ MulticolorTextArea - release
 ============================
 Contained in this branch are the following
 
-- src.com.badlogic.gdx.scenes2d.ui.textarea -
-DefaultTextAreaLinePainter -> default implementation of TextAreaLinePainter
-TextAreaLinePainter -> interface used in conjunction with MulticolorTextArea
-ExtensibleTextArea -> a copy pasted slightly modified TextArea (from libgdx)
-MulticolorTextArea -> a text area that can have text in multiple colors.
+- src.com.badlogic.gdx.scenes2d.ui.textarea
+-- DefaultTextAreaLinePainter -> default implementation of TextAreaLinePainter
+-- TextAreaLinePainter -> interface used in conjunction with MulticolorTextArea
+-- ExtensibleTextArea -> a copy pasted slightly modified TextArea (from libgdx)
+-- MulticolorTextArea -> a text area that can have text in multiple colors.
 
-com.badlogic.gdx.scenes2d.ui.textarea.example
-HelloWorldTester (a basic program that just has a MulticolorTextArea)
-HelloWorldTextPainter (an implementation of TextAreaLinePainter which paints Hello and World different colors).
+- com.badlogic.gdx.scenes2d.ui.textarea.example
+-- HelloWorldTester (a basic program that just has a MulticolorTextArea)
+-- HelloWorldTextPainter (an implementation of TextAreaLinePainter which paints Hello and World different colors).
 
 Usage
 ====================
